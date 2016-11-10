@@ -40,7 +40,7 @@ ggplot(to_plot, aes(x = new_time, y = n)) +
     ylab("Number of Tweets Per Hour")
         
 mySentiment <- get_nrc_sentiment(data_df_ss$text)
-
+View(mySentiment)
 mySentiment$time <- data_df_ss$new_time
 
 prop(c(1:5))
@@ -63,7 +63,11 @@ ggplot(for_p, aes(x = time, y = val, group = key, color = key)) +
     scale_x_discrete(labels = x) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     scale_y_continuous(labels = scales::comma) +
-    scale_color_discrete("title", labels = c("Anger", "Anticipation", "Disgust", "Fear", "Joy",
-                                    "Negative", "Positive", "Sadness", "Surprise", "Truth")) +
+    scale_color_discrete("", labels = c("Anger", "Anticipation", "Disgust", "Fear", "Joy",
+                                    "Negative", "Positive", "Sadness", "Surprise", "Trust")) +
     ylab("Proportion of Tweets Per Hour") +
-    xlab(NULL)
+    xlab(NULL) +
+    theme(plot.margin=unit(c(5.5, 5.5, 5.5, 30), "points")) +
+    theme(text = element_text(size = 16))
+
+ggsave("forecastemo.png")
